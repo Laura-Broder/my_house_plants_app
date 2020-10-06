@@ -1,0 +1,41 @@
+:root {
+  --light-color: #faf3dd;
+  --green-color: #64958f;
+  --blue-color: #065c6f;
+  --orange-color: #ffbb91;
+}
+body {
+  padding: 5px;
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 1px 1px inset;
+  width: 100%;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+}
+.grid-item {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+}
+.container-header {
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 1px 1px inset;
+}
