@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../stories/Button";
 import { Input } from "../stories/Input";
-import RoutineOption from "./RoutineOption.component";
+import CareOption from "./CareOption.component";
 
 const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
-  const [nameTerm, setNameTerm] = useState("");
-  const [imgUrlTerm, setImgUrlTerm] = useState("");
-
-  useEffect(() => {
-    if (editMode) {
-      setNameTerm(item.name);
-      setImgUrlTerm(item.imgUrl);
-    }
-  }, []);
+  const initItem = item;
+  const [itemObj, setItemObj] = useState(initItem);
 
   const handleInputChange = (fieldName, fieldValue) => {
-    fieldName === "plantName"
-      ? setNameTerm(fieldValue)
-      : setImgUrlTerm(fieldValue);
+    const prevItemObj = itemObj;
+    prevItemObj[fieldName] = fieldValue;
+    setItemObj({ ...prevItemObj });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    let itemUpdated = {};
-    if (item) {
-      itemUpdated = item;
-    }
-    itemUpdated.name = nameTerm;
-    itemUpdated.imgUrl = imgUrlTerm;
-    const newArray = onSubmit(itemUpdated);
-    setNameTerm("");
-    setImgUrlTerm("");
-    return newArray;
+    onSubmit(itemObj);
+    setItemObj(initItem);
   };
   const handleDiscard = () => {
-    setNameTerm("");
-    setImgUrlTerm("");
+    setItemObj(initItem);
     onDiscard();
+  };
+  const handleFileLoad = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const fileUrl = URL.createObjectURL(event.target.files[0]);
+      handleInputChange("imgUrl", fileUrl);
+    }
   };
   return (
     <div className="container flex-column">
@@ -46,23 +36,42 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
           handelChange={handleInputChange}
           placeholder="The name of the plant"
           autoFocus
-          name="plantName"
-          value={nameTerm}
+          name="name"
+          value={itemObj.name}
         />
         <div>
-          <RoutineOption
+          <CareOption
             routineName="watering"
             routineLabel="Watering"
             handelChange={handleInputChange}
+            itemObj={itemObj}
+          />
+          <CareOption
+            routineName="fertilizing"
+            routineLabel="Fertilizing"
+            handelChange={handleInputChange}
+            itemObj={itemObj}
+          />
+          <CareOption
+            routineName="trimming"
+            routineLabel="Trimming"
+            handelChange={handleInputChange}
+            itemObj={itemObj}
           />
         </div>
         <label htmlFor="plantImgUrl">Image URL:</label>
         <Input
           handelChange={handleInputChange}
           placeholder="Plant image url"
-          name="plantImgUrl"
-          value={imgUrlTerm}
+          name="imgUrl"
+          value={itemObj.imgUrl}
         />
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          id="imageFile"
+          onChange={handleFileLoad}></input>
         <div className="flex-row">
           {editMode ? (
             <Button

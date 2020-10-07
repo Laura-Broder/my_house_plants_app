@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import GalleryItem from "./GalleryItem.component";
 import PlantGallery from "./PlantGallery.component";
 const UpdateData = require("../functions/updateData").ManageData;
 
 const Home = () => {
   const updateData = new UpdateData();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([...updateData.getData()]);
   const [expendedItem, setExpendedItem] = useState({});
 
-  useEffect(() => {
-    const newList = updateData.getData();
-    setList(newList);
-  }, []);
   const onSearchSubmit = (term) => {
     const searchResults = updateData.searchByName(term);
     setList(searchResults);

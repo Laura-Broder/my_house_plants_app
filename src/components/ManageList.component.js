@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AddNewForm from "./AddNewForm.component";
 import EditForm from "./EditForm.component";
 import PlantsList from "./PlantsList.component";
 const UpdateData = require("../functions/updateData").ManageData;
+const ListItem = require("../functions/updateData").ListItem;
 
 const ManageList = () => {
+  const listItem = new ListItem();
   const updateData = new UpdateData();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([...updateData.getData()]);
   const [editMode, setEditMode] = useState(false);
   const [editItem, setEditItem] = useState({});
-
-  useEffect(() => {
-    const newList = updateData.getData();
-    setList(newList);
-  }, []);
 
   const handleAddNew = (item) => {
     const newList = updateData.addNew(item);
@@ -41,6 +38,10 @@ const ManageList = () => {
     const searchResults = updateData.searchByName(term);
     setList(searchResults);
   };
+  const onDeleteAll = () => {
+    // add an alert of "ARE YOU SURE???"
+    setList(updateData.clearList());
+  };
   return (
     <div className="container flex-row">
       {editMode ? (
@@ -50,13 +51,18 @@ const ManageList = () => {
           onDiscard={handleDiscard}
         />
       ) : (
-        <AddNewForm onSubmit={handleAddNew} onDiscard={handleDiscard} />
+        <AddNewForm
+          item={listItem}
+          onSubmit={handleAddNew}
+          onDiscard={handleDiscard}
+        />
       )}
       <PlantsList
         newList={list}
         onDelete={handleDelete}
         onEdit={handleEdit}
         onSearchSubmit={handleSearchSubmit}
+        onDeleteAll={onDeleteAll}
       />
     </div>
   );

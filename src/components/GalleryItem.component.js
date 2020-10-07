@@ -1,11 +1,12 @@
 import React from "react";
 import { Button } from "../stories/Button";
+import PlantCard from "./PlantCard.component";
 
 const GalleryItem = ({ item, onClose }) => {
+  console.log(item);
   return (
     <div className="container">
-      <p>{item.name}</p>
-      <img src={item.imgUrl} alt={item.name} />
+      <PlantCard item={item} />
       <Button
         value={item.id}
         label="Close"

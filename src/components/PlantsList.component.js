@@ -1,8 +1,15 @@
 import React from "react";
 import { Button } from "../stories/Button";
+import PlantCard from "./PlantCard.component";
 import SearchForm from "./SearchForm.component";
 
-const PlantsList = ({ newList, onEdit, onDelete, onSearchSubmit }) => {
+const PlantsList = ({
+  newList,
+  onEdit,
+  onDelete,
+  onSearchSubmit,
+  onDeleteAll,
+}) => {
   const renderList = () => {
     if (newList.length === 0) {
       return <h4>Nothing to see here yet</h4>;
@@ -10,8 +17,7 @@ const PlantsList = ({ newList, onEdit, onDelete, onSearchSubmit }) => {
     return newList.map((item, index) => {
       return (
         <div key={index} className="container grid-item">
-          <p>{item.name}</p>
-          <img src={item.imgUrl} alt={item.name} />
+          <PlantCard item={item} />
           <Button
             value={item.id}
             label="Edit"
@@ -38,6 +44,15 @@ const PlantsList = ({ newList, onEdit, onDelete, onSearchSubmit }) => {
       <h2 className="container-header">Your List:</h2>
       <SearchForm onFormSubmit={onSearchSubmit} />
       <div className="container grid">{renderList()}</div>
+      <Button
+        backgroundColor="red"
+        value="deleteAll"
+        label="Delete All"
+        onClick={(e) => {
+          onDeleteAll(e.target.value);
+        }}
+        size="small"
+      />
     </div>
   );
 };
