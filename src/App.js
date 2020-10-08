@@ -4,6 +4,7 @@ import "./my-normalize.css";
 import "./App.css";
 import ManageList from "./components/ManageList.component";
 import Home from "./components/Home.component";
+import WeatherWidget from "./components/WeatherWidget.component";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                 <NavLink to="/search-database">Search in Database</NavLink>
               </li>
             </ul>
+            <WeatherWidget />
           </nav>
           <Route path="/manage-list">
             <ManageList />
