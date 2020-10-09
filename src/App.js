@@ -5,6 +5,7 @@ import "./App.css";
 import ManageList from "./components/ManageList.component";
 import Home from "./components/Home.component";
 import WeatherWidget from "./components/WeatherWidget.component";
+import SearchDatabase from "./components/SearchDatabase.component";
 
 function App() {
   return (
@@ -29,9 +30,9 @@ function App() {
           <Route path="/manage-list">
             <ManageList />
           </Route>
-          {/* <Route path="/search-database">
+          <Route path="/search-database">
             <SearchDatabase />
-          </Route> */}
+          </Route>
           <Route exact path="/">
             <Home />
           </Route>

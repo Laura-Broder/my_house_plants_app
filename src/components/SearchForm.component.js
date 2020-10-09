@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Input } from "../stories/Input";
 
-const SearchForm = ({ onFormSubmit }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+const SearchForm = ({ onFormSubmit, initValue }) => {
+  const [searchTerm, setSearchTerm] = useState(initValue);
   const onChange = (_, term) => {
     setSearchTerm(term);
   };
