@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "../stories/Button";
-import SearchForm from "./SearchForm.component";
+import { Button } from "../../stories/Button";
+import SearchForm from "../SearchForm.component";
 
-const PlantGallery = ({ newList, onExpend, onSearchSubmit }) => {
+const PlantGallery = ({ newList, onExpend, onSearchSubmit, searchTerm }) => {
   const renderList = () => {
     if (newList.length === 0) {
       return <h4>Nothing to see here yet</h4>;
@@ -28,7 +28,7 @@ const PlantGallery = ({ newList, onExpend, onSearchSubmit }) => {
   return (
     <div className="container ">
       <h2 className="container-header">Your List:</h2>
-      <SearchForm onFormSubmit={onSearchSubmit} />
+      <SearchForm onFormSubmit={onSearchSubmit} initValue={searchTerm} />
       <div className="container grid">{renderList()}</div>
     </div>
   );

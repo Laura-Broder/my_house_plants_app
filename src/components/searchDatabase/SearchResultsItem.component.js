@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../stories/Button";
+import { Button } from "../../stories/Button";
 
 const SearchResultsItem = ({ item, onClick, handleAdd }) => {
   return (

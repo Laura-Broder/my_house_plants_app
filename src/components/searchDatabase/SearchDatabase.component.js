@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import trefleApi from "../apis/trefleApi";
-import SearchForm from "./SearchForm.component";
-import { Button } from "../stories/Button";
-import SearchResultsItem from "./SearchResultsItem.component";
-import ExpendedItem from "./ExpendedItem.component";
-const PlantDatabase = require("../functions/plantData").PlantDatabase;
-const PlantFullItem = require("../functions/plantData").FullItem;
-const roseResults = require("../functions/roseApiSearchResults").roseResults;
-const UpdateData = require("../functions/updateData").ManageData;
+import trefleApi from "../../apis/trefleApi";
+import SearchForm from "../SearchForm.component";
+import { Button } from "../../stories/Button";
+import SearchResultsItem from "../searchDatabase/SearchResultsItem.component";
+import ExpendedItem from "../ExpendedItem.component";
+import Spinner from "../spinner/Spinner.component";
+const PlantDatabase = require("../../functions/plantData").PlantDatabase;
+const PlantFullItem = require("../../functions/plantData").FullItem;
+const roseResults = require("../../functions/roseApiSearchResults").roseResults;
+const UpdateData = require("../../functions/updateData").ManageData;
 
 const SearchDatabase = () => {
   const userList = new UpdateData();
@@ -23,6 +24,8 @@ const SearchDatabase = () => {
   const [itemSearchResult, setItemSearchResult] = useState(null);
   const [selectedItemFullData, setSelectedItemFullData] = useState(null);
   const [addToListItem, setAddToListItem] = useState(null);
+  const [spinnerShow, setSpinnerShow] = useState(true);
+
   // -----------------------------------
   // fetch from database
   // -----------------------------------
@@ -47,21 +50,29 @@ const SearchDatabase = () => {
   }, [itemSearchResult]);
 
   const handleSearchSubmit = (term) => {
+    setSpinnerShow(true);
     setSearchTerm(term);
     searchDatabaseByTerm(term);
   };
   const searchDatabaseByTerm = async (term) => {
+    setSpinnerShow(true);
     // const response = await trefleApi.get("/api/v1/plants/search", {
     //   params: { q: term },
     // });
     // setDatabaseSearchResults(response.data);
     setDatabaseSearchResults(roseResults);
+    setSpinnerShow(false);
   };
   const getItemDatabase = async (fullItemData) => {
+    setSpinnerShow(true);
+
     const response = await trefleApi.get(fullItemData.links.self);
     setItemSearchResult(response.data.data);
+    setSpinnerShow(false);
   };
   const changePage = async (e) => {
+    setSpinnerShow(true);
+
     switch (e.target.value) {
       case "next":
         setCurrentPage(parseInt(currentPage) + 1);
@@ -82,6 +93,7 @@ const SearchDatabase = () => {
       databaseSearchResults.links[e.target.value],
     );
     setDatabaseSearchResults(response.data);
+    setSpinnerShow(false);
   };
   const jumpToPage = async (e) => {
     setCurrentPage(e.target.value);
@@ -92,11 +104,19 @@ const SearchDatabase = () => {
       },
     });
     setDatabaseSearchResults(response.data);
+    setSpinnerShow(false);
   };
 
   // -----------------------------------
   // add new plant from database to users list
   // -----------------------------------
+  useEffect(() => {
+    if (addToListItem && selectedItemFullData) {
+      setSpinnerShow(true);
+      addNew(addToListItem, selectedItemFullData);
+      setSpinnerShow(false);
+    }
+  }, [addToListItem, selectedItemFullData]);
   const addNew = (addToListItem, selectedItemFullData) => {
     const newItem = addToListItem;
     newItem.fullItemData = selectedItemFullData;
@@ -105,11 +125,6 @@ const SearchDatabase = () => {
     setAddToListItem(null);
     setSelectedItemFullData(null);
   };
-  useEffect(() => {
-    if (addToListItem && selectedItemFullData) {
-      addNew(addToListItem, selectedItemFullData);
-    }
-  }, [addToListItem, selectedItemFullData]);
   // -----------------------------------
   // render methods
   // -----------------------------------
@@ -140,10 +155,14 @@ const SearchDatabase = () => {
             key={item.id}
             item={item}
             onClick={(item) => {
+              setSpinnerShow(true);
+
               setExpendedItem(item);
               getItemDatabase(item.fullItemData);
             }}
             handleAdd={(item) => {
+              setSpinnerShow(true);
+
               getItemDatabase(item.fullItemData);
               setAddToListItem(item);
             }}
@@ -196,6 +215,7 @@ const SearchDatabase = () => {
 
   return (
     <div>
+      {spinnerShow ? <Spinner /> : null}
       <SearchForm onFormSubmit={handleSearchSubmit} initValue={initTerm} />
       {renderExpendedItem(expendedItem)}
       {renderPrevButton()}

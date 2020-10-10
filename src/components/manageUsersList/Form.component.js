@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Button } from "../stories/Button";
-import { Input } from "../stories/Input";
+import { Button } from "../../stories/Button";
+import { Input } from "../../stories/Input";
 import CareOption from "./CareOption.component";
 
 const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
   const initItem = item;
-  const [itemObj, setItemObj] = useState(initItem);
+  const [itemObj, setItemObj] = useState({ ...item });
 
   const handleInputChange = (fieldName, fieldValue) => {
     const prevItemObj = itemObj;
@@ -15,7 +15,7 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(itemObj);
-    setItemObj(initItem);
+    setItemObj(itemObj);
   };
   const handleDiscard = () => {
     setItemObj(initItem);

@@ -1,4 +1,5 @@
 import React from "react";
+import FullDataItem from "./FullDataItem.component";
 
 const PlantCard = ({ item }) => {
   const renderCareRoutine = () => {
@@ -50,8 +51,7 @@ const PlantCard = ({ item }) => {
 
   return (
     <div>
-      <h3>{item.name}</h3>
-      <img src={item.imgUrl} alt={item.name} />
+      <FullDataItem item={item} fullData={item.fullItemData} />
       {renderCareRoutine(item)}
     </div>
   );

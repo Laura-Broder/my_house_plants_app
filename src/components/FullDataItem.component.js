@@ -16,6 +16,7 @@ const FullDataItem = ({ item, fullData }) => {
           {fullDataArray.map(([title, val]) => {
             if (typeof val === "object") return null;
             if (title === "id") return null;
+            if (title === "imgUrl") return null;
             return (
               <div key={title}>
                 <h4>{title}</h4>

@@ -1,9 +1,8 @@
 import React from "react";
-import { Button } from "../stories/Button";
-import PlantCard from "./PlantCard.component";
+import { Button } from "../../stories/Button";
+import PlantCard from "../PlantCard.component";
 
 const GalleryItem = ({ item, onClose }) => {
-  console.log(item);
   return (
     <div className="container">
       <PlantCard item={item} />

@@ -2,15 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import "./my-normalize.css";
 import "./App.css";
-import ManageList from "./components/ManageList.component";
-import Home from "./components/Home.component";
+import ManageList from "./components/manageUsersList/ManageList.component";
+import Home from "./components/homepage/Home.component";
 import WeatherWidget from "./components/WeatherWidget.component";
-import SearchDatabase from "./components/SearchDatabase.component";
+import SearchDatabase from "./components/searchDatabase/SearchDatabase.component";
 
 function App() {
   return (
     <div className="App">
-      {/* <ManageList /> */}
       <Router>
         <div className="flex-row">
           <nav>

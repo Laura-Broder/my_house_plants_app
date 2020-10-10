@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "../stories/Button";
-import PlantCard from "./PlantCard.component";
-import SearchForm from "./SearchForm.component";
+import { Button } from "../../stories/Button";
+// import PlantCard from "./PlantCard.component";
+import SearchForm from "../SearchForm.component";
 
 const PlantsList = ({
   newList,
@@ -17,7 +17,9 @@ const PlantsList = ({
     return newList.map((item, index) => {
       return (
         <div key={index} className="container grid-item">
-          <PlantCard item={item} />
+          {/* <PlantCard item={item} /> */}
+          <p>{item.name}</p>
+          <img src={item.imgUrl} alt={item.name} />
           <Button
             value={item.id}
             label="Edit"

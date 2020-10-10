@@ -14,6 +14,7 @@ export const Input = ({
   name,
   autoFocus,
   handelChange,
+  value,
   ...props
 }) => {
   const mode = primary
@@ -21,6 +22,7 @@ export const Input = ({
     : "storybook-input--secondary";
   return (
     <input
+      value={value}
       name={name}
       type={type}
       className={["storybook-input", `storybook-input--${size}`, mode].join(

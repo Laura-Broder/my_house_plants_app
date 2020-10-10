@@ -15,7 +15,6 @@ const WeatherWidget = () => {
         lon: lon,
       },
     });
-    console.log(response.data);
     setFullData(response.data);
   };
   // not active in dev
