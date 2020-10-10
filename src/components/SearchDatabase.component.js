@@ -97,13 +97,17 @@ const SearchDatabase = () => {
   // -----------------------------------
   // add new plant from database to users list
   // -----------------------------------
-
+  const addNew = (addToListItem, selectedItemFullData) => {
+    const newItem = addToListItem;
+    newItem.fullItemData = selectedItemFullData;
+    const newList = userList.addNew(newItem);
+    setList(newList);
+    setAddToListItem(null);
+    setSelectedItemFullData(null);
+  };
   useEffect(() => {
     if (addToListItem && selectedItemFullData) {
-      const newItem = addToListItem;
-      newItem.fullItemData = selectedItemFullData;
-      const newList = userList.addNew(newItem);
-      setList(newList);
+      addNew(addToListItem, selectedItemFullData);
     }
   }, [addToListItem, selectedItemFullData]);
   // -----------------------------------

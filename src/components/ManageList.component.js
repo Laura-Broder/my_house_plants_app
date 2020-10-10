@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddNewForm from "./AddNewForm.component";
 import EditForm from "./EditForm.component";
+import FullDataItem from "./FullDataItem.component";
 import PlantsList from "./PlantsList.component";
 const UpdateData = require("../functions/updateData").ManageData;
 const ListItem = require("../functions/updateData").ListItem;
@@ -22,6 +23,7 @@ const ManageList = () => {
   };
   const handleEdit = (itemId) => {
     const item = updateData.getItemById(itemId);
+    console.log(item);
     setEditItem(item);
     setEditMode(true);
   };
@@ -45,11 +47,14 @@ const ManageList = () => {
   return (
     <div className="container flex-row">
       {editMode ? (
-        <EditForm
-          item={editItem}
-          onSubmit={handleEditSave}
-          onDiscard={handleDiscard}
-        />
+        <div>
+          <EditForm
+            item={editItem}
+            onSubmit={handleEditSave}
+            onDiscard={handleDiscard}
+          />
+          <FullDataItem item={editItem} fullData={editItem.fullItemData} />
+        </div>
       ) : (
         <AddNewForm
           item={listItem}
