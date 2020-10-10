@@ -11,21 +11,27 @@ const initItem = {
   trimming: true,
   trimmingFrequency: "daily",
   trimmingLastTime: "2020-10-01",
+  fullItemData: {},
 };
 class ListItem {
   constructor(item = initItem, index) {
     this.id = index;
     this.name = item.name;
     this.imgUrl = item.imgUrl;
-    this.watering = item.watering;
-    this.wateringFrequency = item.wateringFrequency;
-    this.wateringLastTime = item.wateringLastTime;
-    this.fertilizing = item.fertilizing;
-    this.fertilizingFrequency = item.fertilizingFrequency;
-    this.fertilizingLastTime = item.fertilizingLastTime;
-    this.trimming = item.trimming;
-    this.trimmingFrequency = item.trimmingFrequency;
-    this.trimmingLastTime = item.trimmingLastTime;
+    this.watering = item.watering || initItem.watering;
+    this.wateringFrequency =
+      item.wateringFrequency || initItem.wateringFrequency;
+    this.wateringLastTime = item.wateringLastTime || initItem.wateringLastTime;
+    this.fertilizing = item.fertilizing || initItem.fertilizing;
+    this.fertilizingFrequency =
+      item.fertilizingFrequency || initItem.fertilizingFrequency;
+    this.fertilizingLastTime =
+      item.fertilizingLastTime || initItem.fertilizingLastTime;
+    this.trimming = item.trimming || initItem.trimming;
+    this.trimmingFrequency =
+      item.trimmingFrequency || initItem.trimmingFrequency;
+    this.trimmingLastTime = item.trimmingLastTime || initItem.trimmingLastTime;
+    this.fullItemData = { ...item.fullItemData } || initItem.fullItemData;
   }
 }
 
