@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import weatherApi from "../apis/weatherApi";
-const WeekData = require("../functions/weatherData").WeekData;
-const initData = require("../functions/initTestData").initData;
+import weatherApi from "../../apis/weatherApi";
+import "./weatherWidget.css";
+const WeekData = require("../../functions/weatherData").WeekData;
+const initData = require("../../functions/initTestData").initData;
 
 const WeatherWidget = () => {
   const [fullData, setFullData] = useState({});
+  const [currentLocation, setCurrentLocation] = useState(
+    "your current location",
+  );
   const [weatherArray, setWeatherArray] = useState({});
 
   // not active in dev
@@ -16,6 +20,7 @@ const WeatherWidget = () => {
       },
     });
     setFullData(response.data);
+    // setCurrentLocation();
   };
   // not active in dev
   const getGeoLocation = () => {
@@ -53,7 +58,7 @@ const WeatherWidget = () => {
     if (weatherArray.length) {
       return weatherArray.map((item) => {
         return (
-          <div key={item.id} className="grid-item">
+          <div key={item.id} className="widget__card widget__card--grid-item">
             <h4>{item.day}</h4>
             <h5>{item.weatherDescription}</h5>
             <img src={item.iconUrl} alt={item.weatherDescription} />
@@ -66,7 +71,12 @@ const WeatherWidget = () => {
     } else return <div>loading</div>;
   };
 
-  return <div className="grid">{renderWeekWeather()}</div>;
+  return (
+    <div className="widget">
+      <h4 className="widget__header">Forecast in {currentLocation}</h4>
+      <div className="widget--grid">{renderWeekWeather()}</div>
+    </div>
+  );
 };
 
 export default WeatherWidget;
