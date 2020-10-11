@@ -62,9 +62,9 @@ const WeatherWidget = () => {
             <h4>{item.day}</h4>
             <h5>{item.weatherDescription}</h5>
             <img src={item.iconUrl} alt={item.weatherDescription} />
-            <h6>Min Temp: {item.minTemp}</h6>
-            <h6>Max Temp: {item.maxTemp}</h6>
-            <h6>Humidity: {item.humidity}</h6>
+            <h6>Min {item.minTemp} &deg;C</h6>
+            <h6>Max {item.maxTemp} &deg;C</h6>
+            <h6>Humidity {item.humidity} &#37;</h6>
           </div>
         );
       });

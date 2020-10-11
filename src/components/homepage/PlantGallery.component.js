@@ -1,17 +1,20 @@
 import React from "react";
 import { Button } from "../../stories/Button";
 import SearchForm from "../SearchForm.component";
+import "./plantGallery.css";
 
 const PlantGallery = ({ newList, onExpend, onSearchSubmit, searchTerm }) => {
   const renderList = () => {
     if (newList.length === 0) {
-      return <h4>Nothing to see here yet</h4>;
+      return <h2>Nothing to see here yet</h2>;
     }
     return newList.map((item, index) => {
       return (
-        <div key={index} className="container grid-item">
-          <p>{item.name}</p>
-          <img src={item.imgUrl} alt={item.name} />
+        <div
+          key={index}
+          className="gallery__card card--grid-item card-flex-column">
+          <p className="card__header">{item.name}</p>
+          <img className="card__img" src={item.imgUrl} alt={item.name} />
           <Button
             value={item.id}
             label="Expend"
@@ -26,10 +29,10 @@ const PlantGallery = ({ newList, onExpend, onSearchSubmit, searchTerm }) => {
   };
 
   return (
-    <div className="container ">
-      <h2 className="container-header">Your List:</h2>
+    <div className="home">
+      <h2 className="home__header">Your List:</h2>
       <SearchForm onFormSubmit={onSearchSubmit} initValue={searchTerm} />
-      <div className="container grid">{renderList()}</div>
+      <div className="gallery gallery--grid">{renderList()}</div>
     </div>
   );
 };

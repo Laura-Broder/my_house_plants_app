@@ -2,22 +2,21 @@
   text-align: center;
   max-width: 120px;
   /* border: 1px solid #ccc; */
-  color: var(--light-color);
-  margin-top: 10px;
+  margin-top: 1vh;
 }
 .widget--grid {
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 10px;
+  /* grid-gap: 10px; */
   /* justify-items: stretch; */
 }
 .widget__card--grid-item {
   border-top: 1px solid #ccc;
   /* box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3); */
   max-height: 100%;
-  padding: 5px;
+  padding: 0.5vh;
 }
 .widget__header {
-  padding: 5px;
+  padding: 0.5vh 0.5vw;
   border-top: 1px solid #ccc;
 }

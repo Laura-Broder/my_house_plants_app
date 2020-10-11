@@ -1,12 +1,15 @@
 :root {
   --light-color: #faf3dd;
   --green-color: #64958f;
+  --green-faded-color: #64958f83;
   --blue-color: #065c6f;
   --orange-color: #ffbb91;
 }
+
 body {
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Comfortaa", cursive;
   background-color: var(--blue-color);
+  color: var(--light-color);
 }
 img {
   max-width: 100%;
@@ -15,12 +18,20 @@ img {
 a {
   text-decoration: none;
   color: inherit;
+  font-family: inherit;
 }
 li {
   list-style: none;
 }
+button {
+  font-family: inherit;
+}
+.app--flex-row {
+  display: flex;
+  justify-content: center;
+}
 .navbar {
-  padding: 5px;
+  padding: 10px 5px;
   background-color: var(--green-color);
 }
 .navbar--flex-column {
@@ -29,10 +40,20 @@ li {
   align-items: center;
 }
 .navbar__item {
-  border-top: 1px solid #ccc;
   padding: 5px;
   color: var(--light-color);
   max-width: 120px;
+  transition: 0.5s ease;
+}
+.navbar__item--border {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.navbar__item:hover {
+  background-color: var(--blue-color);
+}
+.navbar__gap {
+  padding: 10px;
 }
 .container {
   padding: 5px;
@@ -45,6 +66,7 @@ li {
   display: flex;
   flex-direction: column;
 }
+
 .flex-row {
   display: flex;
   justify-content: center;

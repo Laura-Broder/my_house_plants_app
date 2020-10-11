@@ -1,0 +1,31 @@
+.home {
+  /* width: 100%; */
+}
+.home__header {
+}
+.gallery {
+  padding-top: 2vh;
+}
+.gallery--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 1vw 1vh;
+  align-items: stretch;
+}
+.gallery__card {
+  border: 1px solid rgba(204, 204, 204, 0.383);
+  border-radius: 5px;
+}
+.card--grid-item {
+  max-width: 100%;
+}
+
+.card-flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card__header {
+  text-align: center;
+  padding: 1vh 1vw;
+}

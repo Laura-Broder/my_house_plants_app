@@ -9,22 +9,22 @@ import SearchDatabase from "./components/searchDatabase/SearchDatabase.component
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Router>
-        <div className="flex-row">
+        <div className="app--flex-row">
           <nav className="navbar navbar--flex-column">
             <ul>
               <li className="navbar__item">
                 <NavLink to="/">Home</NavLink>
               </li>
-              <li className="navbar__item">
+              <li className="navbar__item navbar__item--border">
                 <NavLink to="/manage-list">Manage Your List</NavLink>
               </li>
               <li className="navbar__item">
                 <NavLink to="/search-database">Search in Database</NavLink>
               </li>
-              <li className="navbar__item"></li>
             </ul>
+            <div className="navbar__gap"></div>
             <WeatherWidget />
           </nav>
           <Route path="/manage-list">
