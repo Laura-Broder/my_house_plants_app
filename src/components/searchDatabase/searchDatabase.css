@@ -52,3 +52,6 @@
 .buttons-container button {
   margin-right: 0.5vw;
 }
+.buttons-container.align-right {
+  text-align: right;
+}

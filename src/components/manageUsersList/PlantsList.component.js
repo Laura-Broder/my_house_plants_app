@@ -56,7 +56,7 @@ const PlantsList = ({
             onDeleteAll(e.target.value);
           }}
           size="small"
-          primary="false"
+          primary={false}
         />
       </div>
       <SearchForm onFormSubmit={onSearchSubmit} />

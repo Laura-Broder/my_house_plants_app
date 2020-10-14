@@ -57,11 +57,11 @@ const SearchDatabase = () => {
   };
   const searchDatabaseByTerm = async (term) => {
     setSpinnerShow(true);
-    // const response = await trefleApi.get("/api/v1/plants/search", {
-    //   params: { q: term },
-    // });
-    // setDatabaseSearchResults(response.data);
-    setDatabaseSearchResults(roseResults);
+    const response = await trefleApi.get("/api/v1/plants/search", {
+      params: { q: term },
+    });
+    setDatabaseSearchResults(response.data);
+    // setDatabaseSearchResults(roseResults);
     setSpinnerShow(false);
   };
   const getItemDatabase = async (fullItemData) => {
@@ -235,7 +235,7 @@ const SearchDatabase = () => {
       <div className="buttons-container">{renderPrevButton()}</div>
       <div>{renderJumpToPage()}</div>
       <div className="searchDatabase--grid">{renderSearchResults()}</div>
-      <div className="buttons-container">{renderNextButton()}</div>
+      <div className="buttons-container align-right">{renderNextButton()}</div>
     </div>
   );
 };

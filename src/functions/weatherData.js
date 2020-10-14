@@ -39,8 +39,8 @@ class WeekData {
       return new DayData({
         index: index,
         day: newDay,
-        maxTemp: item.temp.max,
-        minTemp: item.temp.min,
+        maxTemp: parseInt(item.temp.max),
+        minTemp: parseInt(item.temp.min),
         humidity: item.humidity,
         weatherDescription: item.weather[0].description,
         iconUrl: `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,

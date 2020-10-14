@@ -45,9 +45,9 @@ const WeatherWidget = () => {
 
   useEffect(() => {
     // not active in dev:
-    // const status = getGeoLocation();
-    // console.log(status);
-    setFullData(initData);
+    const status = getGeoLocation();
+    console.log(status);
+    // setFullData(initData);
   }, []);
 
   useEffect(() => {
