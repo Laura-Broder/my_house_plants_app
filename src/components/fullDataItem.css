@@ -1,0 +1,28 @@
+.fullDataItem {
+  max-height: 600px;
+  max-width: 80%;
+}
+
+.fullDataItem--flex-row {
+  display: flex;
+  justify-content: space-evenly;
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+}
+.fullDataItem__header {
+  font-size: 40px;
+}
+.fullDataItem__header--flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fullDataItem h4 {
+}
+
+.fullDataItem img {
+  object-fit: cover;
+  max-width: 90%;
+  max-height: 80%;
+  /* width: 50vw; */
+}

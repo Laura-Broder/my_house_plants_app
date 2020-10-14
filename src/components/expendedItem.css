@@ -1,0 +1,14 @@
+.expendedSearch-item {
+  border: 1px solid rgba(204, 204, 204, 0.383);
+  border-radius: 5px;
+}
+
+.expendedSearch-item button {
+  margin-top: 0.5vh;
+}
+
+.expendedSearch-item--flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

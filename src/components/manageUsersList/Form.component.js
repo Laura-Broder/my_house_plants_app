@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../../stories/Button";
 import { Input } from "../../stories/Input";
 import CareOption from "./CareOption.component";
+import "./form.css";
 
 const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
   const initItem = item;
@@ -28,9 +29,9 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
     }
   };
   return (
-    <div className="container flex-column">
-      <h2 className="container-header">{formHeader}</h2>
-      <form className="flex-column" onSubmit={handleSubmit}>
+    <div className="form--container ">
+      <h2 className="form__header">{formHeader}</h2>
+      <form className="form form--flex-column" onSubmit={handleSubmit}>
         <label htmlFor="plantName">Name:</label>
         <Input
           handelChange={handleInputChange}
@@ -39,7 +40,7 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
           name="name"
           value={itemObj.name}
         />
-        <div>
+        <div className="form--flex-column">
           <CareOption
             routineName="watering"
             routineLabel="Watering"
@@ -66,16 +67,16 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
           name="imgUrl"
           value={itemObj.imgUrl}
         />
-        <input
+        {/* <input
           type="file"
           accept="image/*"
           name="image"
           id="imageFile"
-          onChange={handleFileLoad}></input>
-        <div className="flex-row">
+          onChange={handleFileLoad}></input> */}
+        <div className="form--flex-column">
           {editMode ? (
             <Button
-              backgroundColor={null}
+              backgroundColor="#ec6e4c"
               label="Save"
               type="submit"
               onClick={() => {}}
@@ -84,7 +85,7 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
             />
           ) : (
             <Button
-              backgroundColor={null}
+              backgroundColor="#ec6e4c"
               label="Add"
               type="submit"
               onClick={() => {}}
@@ -93,7 +94,7 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
             />
           )}
           <Button
-            backgroundColor={null}
+            backgroundColor="#ec6e4c"
             label="Discard"
             onClick={handleDiscard}
             primary

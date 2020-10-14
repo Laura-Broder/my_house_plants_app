@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../stories/Button";
-// import PlantCard from "./PlantCard.component";
 import SearchForm from "../SearchForm.component";
+import "./plantList.css";
 
 const PlantsList = ({
   newList,
@@ -16,45 +16,51 @@ const PlantsList = ({
     }
     return newList.map((item, index) => {
       return (
-        <div key={index} className="container grid-item">
-          {/* <PlantCard item={item} /> */}
+        <div
+          key={index}
+          className="plantList--grid-item plantList--flex-column">
           <p>{item.name}</p>
           <img src={item.imgUrl} alt={item.name} />
-          <Button
-            value={item.id}
-            label="Edit"
-            onClick={(e) => {
-              onEdit(e.target.value);
-            }}
-            size="small"
-          />
-          <Button
-            value={item.id}
-            label="Delete"
-            onClick={(e) => {
-              onDelete(e.target.value);
-            }}
-            size="small"
-          />
+          <div className="plantList--flex-column">
+            <Button
+              value={item.id}
+              label="Edit"
+              onClick={(e) => {
+                onEdit(e.target.value);
+              }}
+              size="small"
+            />
+            <Button
+              value={item.id}
+              label="Delete"
+              onClick={(e) => {
+                onDelete(e.target.value);
+              }}
+              size="small"
+            />
+          </div>
         </div>
       );
     });
   };
 
   return (
-    <div className="container">
-      <h2 className="container-header">Your List:</h2>
+    <div className="plantList-container">
+      <div className="plantList-header--flex-row">
+        <h2 className="plantList-header">Your List:</h2>
+        <Button
+          backgroundColor="red"
+          value="deleteAll"
+          label="Delete All"
+          onClick={(e) => {
+            onDeleteAll(e.target.value);
+          }}
+          size="small"
+          primary="false"
+        />
+      </div>
       <SearchForm onFormSubmit={onSearchSubmit} />
-      <div className="container grid">{renderList()}</div>
-      <Button
-        backgroundColor="red"
-        value="deleteAll"
-        label="Delete All"
-        onClick={(e) => {
-          onDeleteAll(e.target.value);
-        }}
-        size="small"
-      />
+      <div className="planList--grid">{renderList()}</div>
     </div>
   );
 };

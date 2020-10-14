@@ -1,4 +1,5 @@
 import React from "react";
+import "./careOption.css";
 
 const CareOption = ({ routineName, routineLabel, handelChange, itemObj }) => {
   const onChange = (event) => {
@@ -8,16 +9,18 @@ const CareOption = ({ routineName, routineLabel, handelChange, itemObj }) => {
 
   return (
     <div>
-      <div>
-        <input
-          type="checkbox"
-          onChange={(e) => {
-            handelChange(e.target.name, e.target.checked);
-          }}
-          name={routineName}
-          checked={itemObj[routineName]}
-        />
-        <label htmlFor={routineName}>{routineLabel}</label>
+      <div className="care-container care-container__flex-row">
+        <div>
+          <input
+            type="checkbox"
+            onChange={(e) => {
+              handelChange(e.target.name, e.target.checked);
+            }}
+            name={routineName}
+            checked={itemObj[routineName]}
+          />
+          <label htmlFor={routineName}>{routineLabel}</label>
+        </div>
         <select
           disabled={!itemObj[routineName]}
           name={`${routineName}Frequency`}

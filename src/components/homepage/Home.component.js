@@ -22,6 +22,7 @@ const Home = () => {
     const searchResults = updateData.searchByName(term);
     setList(searchResults);
     setSpinnerShow(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const renderExpendedItem = () => {
@@ -32,9 +33,10 @@ const Home = () => {
   const onExpend = (itemId) => {
     const item = updateData.getItemById(itemId);
     setExpendedItem(item);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <div className=" container">
+    <div className="home container">
       {spinnerShow && <Spinner />}
       {expendedItem && renderExpendedItem()}
       <PlantGallery

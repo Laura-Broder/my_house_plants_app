@@ -10,6 +10,7 @@ const WeatherWidget = () => {
     "your current location",
   );
   const [weatherArray, setWeatherArray] = useState({});
+  const [isExpended, setIsExpended] = useState(false);
 
   // not active in dev
   const getWeather = async (lon, lat) => {
@@ -58,22 +59,39 @@ const WeatherWidget = () => {
     if (weatherArray.length) {
       return weatherArray.map((item) => {
         return (
-          <div key={item.id} className="widget__card widget__card--grid-item">
-            <h4>{item.day}</h4>
-            <h5>{item.weatherDescription}</h5>
-            <img src={item.iconUrl} alt={item.weatherDescription} />
-            <h6>Min {item.minTemp} &deg;C</h6>
-            <h6>Max {item.maxTemp} &deg;C</h6>
-            <h6>Humidity {item.humidity} &#37;</h6>
+          <div
+            key={item.id}
+            className={`widget__card widget__card--grid-item ${
+              !isExpended && item.id !== 0 && "hide"
+            }`}>
+            <h5>{item.day}</h5>
+
+            <h6>{item.weatherDescription}</h6>
+            <img
+              className="widget__card__img"
+              src={item.iconUrl}
+              alt={item.weatherDescription}
+            />
+            <h6>{item.minTemp} &deg;C</h6>
+            <h6>{item.maxTemp} &deg;C</h6>
+            <h6>Hum. {item.humidity} &#37;</h6>
           </div>
         );
       });
     } else return <div>loading</div>;
   };
-
+  const toggleWidget = () => {
+    setIsExpended(!isExpended);
+  };
   return (
     <div className="widget">
-      <h4 className="widget__header">Forecast in {currentLocation}</h4>
+      <div className="widget__header">
+        <h4>Forecast in {currentLocation}</h4>
+        <h6 className="header__show-more" onClick={toggleWidget}>
+          {isExpended ? "Show less" : "Show more"}
+        </h6>
+      </div>
+
       <div className="widget--grid">{renderWeekWeather()}</div>
     </div>
   );

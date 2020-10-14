@@ -2,6 +2,7 @@
   /* width: 100%; */
 }
 .home__header {
+  padding-bottom: 2vh;
 }
 .gallery {
   padding-top: 2vh;
@@ -9,10 +10,12 @@
 .gallery--grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 1vw 1vh;
-  align-items: stretch;
+  /* grid-template-rows: repeat(auto-fill, minmax(150px, 1fr)); */
+  grid-gap: 1vh 1vw;
+  /* align-items: stretch; */
 }
 .gallery__card {
+  background-color: var(--green-faded-color);
   border: 1px solid rgba(204, 204, 204, 0.383);
   border-radius: 5px;
 }
@@ -28,4 +31,8 @@
 .card__header {
   text-align: center;
   padding: 1vh 1vw;
+}
+.card__img {
+  max-height: 200px;
+  object-fit: cover;
 }

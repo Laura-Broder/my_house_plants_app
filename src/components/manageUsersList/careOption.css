@@ -1,0 +1,8 @@
+.care-container__flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="checkbox"] {
+  margin-right: 1vw;
+}

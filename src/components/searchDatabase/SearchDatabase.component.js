@@ -5,6 +5,7 @@ import { Button } from "../../stories/Button";
 import SearchResultsItem from "../searchDatabase/SearchResultsItem.component";
 import ExpendedItem from "../ExpendedItem.component";
 import Spinner from "../spinner/Spinner.component";
+import "./searchDatabase.css";
 const PlantDatabase = require("../../functions/plantData").PlantDatabase;
 const PlantFullItem = require("../../functions/plantData").FullItem;
 const roseResults = require("../../functions/roseApiSearchResults").roseResults;
@@ -94,6 +95,7 @@ const SearchDatabase = () => {
     );
     setDatabaseSearchResults(response.data);
     setSpinnerShow(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const jumpToPage = async (e) => {
     setCurrentPage(e.target.value);
@@ -105,6 +107,7 @@ const SearchDatabase = () => {
     });
     setDatabaseSearchResults(response.data);
     setSpinnerShow(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // -----------------------------------
@@ -155,6 +158,8 @@ const SearchDatabase = () => {
             key={item.id}
             item={item}
             onClick={(item) => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+
               setSpinnerShow(true);
 
               setExpendedItem(item);
@@ -183,8 +188,14 @@ const SearchDatabase = () => {
       }
       return (
         <>
-          <p> Showing {searchResults.length} Results</p>
-          <select name="jumpToPage" onChange={jumpToPage} value={currentPage}>
+          <p className="buttons-container">
+            Showing {searchResults.length} Results
+          </p>
+          <select
+            className="buttons-container"
+            name="jumpToPage"
+            onChange={jumpToPage}
+            value={currentPage}>
             {pages}
           </select>
           <span> of {lastPage} Pages </span>
@@ -195,7 +206,7 @@ const SearchDatabase = () => {
   const renderPrevButton = () => {
     if (searchResults.length && databaseSearchResults.links.prev) {
       return (
-        <div>
+        <div className="buttons-container">
           <Button label="First Page" onClick={changePage} value="first" />
           <Button label="Prev Page" onClick={changePage} value="prev" />
         </div>
@@ -214,14 +225,17 @@ const SearchDatabase = () => {
   };
 
   return (
-    <div>
+    <div className="searchDatabase-container">
       {spinnerShow ? <Spinner /> : null}
-      <SearchForm onFormSubmit={handleSearchSubmit} initValue={initTerm} />
+      <h2 className="searchDatabase__header">Search and Discover New Plants</h2>
+      <div className="searchForm-container">
+        <SearchForm onFormSubmit={handleSearchSubmit} initValue={initTerm} />
+      </div>
       {renderExpendedItem(expendedItem)}
-      {renderPrevButton()}
-      {renderJumpToPage()}
-      <div className="grid">{renderSearchResults()}</div>
-      {renderNextButton()}
+      <div className="buttons-container">{renderPrevButton()}</div>
+      <div>{renderJumpToPage()}</div>
+      <div className="searchDatabase--grid">{renderSearchResults()}</div>
+      <div className="buttons-container">{renderNextButton()}</div>
     </div>
   );
 };

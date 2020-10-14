@@ -30,7 +30,7 @@ const PlantGallery = ({ newList, onExpend, onSearchSubmit, searchTerm }) => {
 
   return (
     <div className="home">
-      <h2 className="home__header">Your List:</h2>
+      <h2 className="home__header">Your Plants List:</h2>
       <SearchForm onFormSubmit={onSearchSubmit} initValue={searchTerm} />
       <div className="gallery gallery--grid">{renderList()}</div>
     </div>

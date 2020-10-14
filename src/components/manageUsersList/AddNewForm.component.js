@@ -3,7 +3,7 @@ import Form from "./Form.component";
 
 const AddNewForm = ({ item, onSubmit, onDiscard }) => {
   return (
-    <div className="container flex-column">
+    <div>
       <Form
         item={item}
         onSubmit={onSubmit}

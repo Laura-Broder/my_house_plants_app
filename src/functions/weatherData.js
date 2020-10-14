@@ -26,11 +26,19 @@ class WeekData {
 
   processData = (dataArray) => {
     return dataArray.map((item, index) => {
+      const options = {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      };
       let d = new Date();
-      d.setDate(d.getDate() + index);
+      let day = d.getDate() + index;
+      d.setDate(day);
+      const newDay = new Intl.DateTimeFormat("default", options).format(d);
+
       return new DayData({
         index: index,
-        day: d.toDateString(),
+        day: newDay,
         maxTemp: item.temp.max,
         minTemp: item.temp.min,
         humidity: item.humidity,

@@ -5,6 +5,7 @@ import FullDataItem from "../FullDataItem.component";
 import PlantsList from "./PlantsList.component";
 import Spinner from "../spinner/Spinner.component";
 import { useEffect } from "react";
+import "./manageList.css";
 const UpdateData = require("../../functions/updateData").ManageData;
 const ListItem = require("../../functions/updateData").ListItem;
 
@@ -66,10 +67,10 @@ const ManageList = () => {
     setSpinnerShow(false);
   };
   return (
-    <div className="container flex-row">
+    <div className="manageList-container manageList--flex-row">
       {spinnerShow && <Spinner />}
       {editMode ? (
-        <div>
+        <div className="editForm-container">
           <EditForm
             item={editItem}
             onSubmit={handleEditSave}
