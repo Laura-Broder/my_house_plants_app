@@ -83,7 +83,7 @@ class FullItem {
     this.imgUrl = item.image_url || "no data";
     this.family_common_name = item.family_common_name || "no data";
     this.duration = item.duration ? item.duration.join() : "no data";
-    this.edible = item.edible.toString();
+    this.edible = item.edible && item.edible.toString();
     // this.flower_images =
     //   item.images.flower
     //     .map((img) => {
