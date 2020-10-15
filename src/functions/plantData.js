@@ -79,7 +79,7 @@ const initFullItem = {
 class FullItem {
   constructor(item) {
     this.id = item.id;
-    this.name = item.common_name || "no data";
+    this.name = item.common_name || "un-known";
     this.imgUrl = item.image_url || "no data";
     this.family_common_name = item.family_common_name || "no data";
     this.duration = item.duration ? item.duration.join() : "no data";
