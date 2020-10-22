@@ -13,7 +13,6 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    console.log("i render");
     setSpinnerShow(false);
   }, []);
   const onSearchSubmit = (term) => {

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import weatherApi from "../../apis/weatherApi";
 import "./weatherWidget.css";
 const WeekData = require("../../functions/weatherData").WeekData;
-const initData = require("../../functions/initTestData").initData;
+// const initData = require("../../functions/initTestData").initData;
 
 const WeatherWidget = () => {
   const [fullData, setFullData] = useState({});
-  const [currentLocation, setCurrentLocation] = useState(
-    "your current location",
-  );
+  const [status, setStatus] = useState("");
+  // const [currentLocation, setCurrentLocation] = useState(
+  //   "your current location",
+  // );
   const [weatherArray, setWeatherArray] = useState({});
   const [isExpended, setIsExpended] = useState(false);
 
@@ -21,33 +22,45 @@ const WeatherWidget = () => {
       },
     });
     setFullData(response.data);
-    // setCurrentLocation();
   };
-  // not active in dev
-  const getGeoLocation = () => {
-    let status = "";
+
+  // const getGeoLocation = () => {
+  //   let status = "";
+  //   if ("geolocation" in navigator) {
+  //     status = "Available";
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         getWeather(position.coords.longitude, position.coords.latitude);
+  //       },
+  //       (error) => {
+  //         console.error("Error Code = " + error.code + " - " + error.message);
+  //       },
+  //     );
+  //   } else {
+  //     status = "Not Available";
+  //   }
+
+  //   return status;
+  // };
+
+  // useEffect(() => {
+  //   getGeoLocation();
+  // }, []);
+  useEffect(() => {
     if ("geolocation" in navigator) {
-      status = "Available";
+      setStatus("Loading...");
       navigator.geolocation.getCurrentPosition(
         (position) => {
           getWeather(position.coords.longitude, position.coords.latitude);
         },
         (error) => {
           console.error("Error Code = " + error.code + " - " + error.message);
+          setStatus("Please allow location detection");
         },
       );
     } else {
-      status = "Not Available";
+      setStatus("Not Available");
     }
-
-    return status;
-  };
-
-  useEffect(() => {
-    // not active in dev:
-    const status = getGeoLocation();
-    console.log(status);
-    // setFullData(initData);
   }, []);
 
   useEffect(() => {
@@ -78,7 +91,7 @@ const WeatherWidget = () => {
           </div>
         );
       });
-    } else return <div>loading</div>;
+    } else return <div>{status}</div>;
   };
   const toggleWidget = () => {
     setIsExpended(!isExpended);
@@ -86,7 +99,7 @@ const WeatherWidget = () => {
   return (
     <div className="widget">
       <div className="widget__header">
-        <h4>Forecast in {currentLocation}</h4>
+        <h4>Forecast in your current location</h4>
         <h6 className="header__show-more" onClick={toggleWidget}>
           {isExpended ? "Show less" : "Show more"}
         </h6>

@@ -8,12 +8,12 @@ import Spinner from "../spinner/Spinner.component";
 import "./searchDatabase.css";
 const PlantDatabase = require("../../functions/plantData").PlantDatabase;
 const PlantFullItem = require("../../functions/plantData").FullItem;
-const roseResults = require("../../functions/roseApiSearchResults").roseResults;
+// const roseResults = require("../../functions/roseApiSearchResults").roseResults;
 const UpdateData = require("../../functions/updateData").ManageData;
 
 const SearchDatabase = () => {
   const userList = new UpdateData();
-  const [list, setList] = useState([...userList.getData()]);
+  // const [list, setList] = useState([...userList.getData()]);
   const managePlantDatabase = new PlantDatabase();
   const initTerm = "rose";
   const [searchTerm, setSearchTerm] = useState(initTerm);
@@ -33,7 +33,7 @@ const SearchDatabase = () => {
   // display rose search results (default search term) on page load
   useEffect(() => {
     searchDatabaseByTerm(searchTerm);
-  }, []);
+  }, [searchTerm]);
   // update the displayed search results every time the they change
   useEffect(() => {
     if (databaseSearchResults) {
@@ -120,11 +120,13 @@ const SearchDatabase = () => {
       setSpinnerShow(false);
     }
   }, [addToListItem, selectedItemFullData]);
+
   const addNew = (addToListItem, selectedItemFullData) => {
     const newItem = addToListItem;
     newItem.fullItemData = selectedItemFullData;
-    const newList = userList.addNew(newItem);
-    setList(newList);
+    userList.addNew(newItem);
+    // const newList = userList.addNew(newItem);
+    // setList(newList);
     setAddToListItem(null);
     setSelectedItemFullData(null);
   };

@@ -22,12 +22,12 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
     setItemObj(initItem);
     onDiscard();
   };
-  const handleFileLoad = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const fileUrl = URL.createObjectURL(event.target.files[0]);
-      handleInputChange("imgUrl", fileUrl);
-    }
-  };
+  // const handleFileLoad = (event) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     const fileUrl = URL.createObjectURL(event.target.files[0]);
+  //     handleInputChange("imgUrl", fileUrl);
+  //   }
+  // };
   return (
     <div className="form--container ">
       <h2 className="form__header">{formHeader}</h2>

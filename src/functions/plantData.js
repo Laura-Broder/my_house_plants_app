@@ -66,15 +66,15 @@ class PlantDatabase {
   };
 }
 
-const initFullItem = {
-  id: null,
-  name: "Un-named",
-  imgUrl: "https://www.flaticon.com/svg/static/icons/svg/628/628283.svg",
-  family_common_name: "",
-  duration: "",
-  edible: "",
-  flower_images: "",
-};
+// const initFullItem = {
+//   id: null,
+//   name: "Un-named",
+//   imgUrl: "https://www.flaticon.com/svg/static/icons/svg/628/628283.svg",
+//   family_common_name: "",
+//   duration: "",
+//   edible: "",
+//   flower_images: "",
+// };
 
 class FullItem {
   constructor(item) {
