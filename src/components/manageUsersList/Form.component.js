@@ -22,12 +22,7 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
     setItemObj(initItem);
     onDiscard();
   };
-  // const handleFileLoad = (event) => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     const fileUrl = URL.createObjectURL(event.target.files[0]);
-  //     handleInputChange("imgUrl", fileUrl);
-  //   }
-  // };
+
   return (
     <div className="form--container ">
       <h2 className="form__header">{formHeader}</h2>
@@ -67,12 +62,7 @@ const Form = ({ onSubmit, formHeader, item, editMode, onDiscard }) => {
           name="imgUrl"
           value={itemObj.imgUrl}
         />
-        {/* <input
-          type="file"
-          accept="image/*"
-          name="image"
-          id="imageFile"
-          onChange={handleFileLoad}></input> */}
+
         <div className="form--flex-column">
           {editMode ? (
             <Button

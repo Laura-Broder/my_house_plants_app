@@ -1,5 +1,3 @@
-// const initData = require("./initTestData").initData;
-
 const initItem = {
   id: null,
   day: null,

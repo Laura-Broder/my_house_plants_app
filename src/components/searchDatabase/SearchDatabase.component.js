@@ -8,12 +8,10 @@ import Spinner from "../spinner/Spinner.component";
 import "./searchDatabase.css";
 const PlantDatabase = require("../../functions/plantData").PlantDatabase;
 const PlantFullItem = require("../../functions/plantData").FullItem;
-// const roseResults = require("../../functions/roseApiSearchResults").roseResults;
 const UpdateData = require("../../functions/updateData").ManageData;
 
 const SearchDatabase = () => {
   const userList = new UpdateData();
-  // const [list, setList] = useState([...userList.getData()]);
   const managePlantDatabase = new PlantDatabase();
   const initTerm = "rose";
   const [searchTerm, setSearchTerm] = useState(initTerm);
@@ -30,10 +28,7 @@ const SearchDatabase = () => {
   // -----------------------------------
   // fetch from database
   // -----------------------------------
-  // display rose search results (default search term) on page load
-  useEffect(() => {
-    searchDatabaseByTerm(searchTerm);
-  }, [searchTerm]);
+
   // update the displayed search results every time the they change
   const updateSearchResultsDisplay = () => {
     if (databaseSearchResults) {
@@ -55,17 +50,21 @@ const SearchDatabase = () => {
   const handleSearchSubmit = (term) => {
     setSpinnerShow(true);
     setSearchTerm(term);
-    searchDatabaseByTerm(term);
   };
-  const searchDatabaseByTerm = async (term) => {
-    setSpinnerShow(true);
-    const response = await trefleApi.get("/api/v1/plants/search", {
-      params: { q: term },
-    });
-    setDatabaseSearchResults(response.data);
-    // setDatabaseSearchResults(roseResults);
-    setSpinnerShow(false);
-  };
+
+  // display rose search results (default search term) on page load
+  useEffect(() => {
+    const searchDatabaseByTerm = async () => {
+      setSpinnerShow(true);
+      const response = await trefleApi.get("/api/v1/plants/search", {
+        params: { q: searchTerm },
+      });
+      setDatabaseSearchResults(response.data);
+      setSpinnerShow(false);
+    };
+    searchDatabaseByTerm();
+  }, [searchTerm]);
+
   const getItemDatabase = async (fullItemData) => {
     setSpinnerShow(true);
 
@@ -97,7 +96,10 @@ const SearchDatabase = () => {
     );
     setDatabaseSearchResults(response.data);
     setSpinnerShow(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   const jumpToPage = async (e) => {
     setCurrentPage(e.target.value);
@@ -109,7 +111,10 @@ const SearchDatabase = () => {
     });
     setDatabaseSearchResults(response.data);
     setSpinnerShow(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   // -----------------------------------
@@ -128,8 +133,6 @@ const SearchDatabase = () => {
     const newItem = addToListItem;
     newItem.fullItemData = selectedItemFullData;
     userList.addNew(newItem);
-    // const newList = userList.addNew(newItem);
-    // setList(newList);
     setAddToListItem(null);
     setSelectedItemFullData(null);
   };
@@ -163,7 +166,10 @@ const SearchDatabase = () => {
             key={item.id}
             item={item}
             onClick={(item) => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
 
               setSpinnerShow(true);
 

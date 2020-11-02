@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import weatherApi from "../../apis/weatherApi";
 import "./weatherWidget.css";
 const WeekData = require("../../functions/weatherData").WeekData;
-// const initData = require("../../functions/initTestData").initData;
 
 const WeatherWidget = () => {
   const [fullData, setFullData] = useState({});
   const [status, setStatus] = useState("");
-  // const [currentLocation, setCurrentLocation] = useState(
-  //   "your current location",
-  // );
   const [weatherArray, setWeatherArray] = useState({});
   const [isExpended, setIsExpended] = useState(false);
 
-  // not active in dev
   const getWeather = async (lon, lat) => {
     const response = await weatherApi.get("", {
       params: {
@@ -24,29 +19,7 @@ const WeatherWidget = () => {
     setFullData(response.data);
   };
 
-  // const getGeoLocation = () => {
-  //   let status = "";
-  //   if ("geolocation" in navigator) {
-  //     status = "Available";
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         getWeather(position.coords.longitude, position.coords.latitude);
-  //       },
-  //       (error) => {
-  //         console.error("Error Code = " + error.code + " - " + error.message);
-  //       },
-  //     );
-  //   } else {
-  //     status = "Not Available";
-  //   }
-
-  //   return status;
-  // };
-
-  // useEffect(() => {
-  //   getGeoLocation();
-  // }, []);
-  useEffect(() => {
+  const getGeoLocation = () => {
     if ("geolocation" in navigator) {
       setStatus("Loading...");
       navigator.geolocation.getCurrentPosition(
@@ -61,7 +34,9 @@ const WeatherWidget = () => {
     } else {
       setStatus("Not Available");
     }
-  }, []);
+  };
+
+  useEffect(getGeoLocation, []);
 
   useEffect(() => {
     const weekData = new WeekData(fullData.daily);
@@ -93,9 +68,11 @@ const WeatherWidget = () => {
       });
     } else return <div>{status}</div>;
   };
+
   const toggleWidget = () => {
     setIsExpended(!isExpended);
   };
+
   return (
     <div className="widget">
       <div className="widget__header">

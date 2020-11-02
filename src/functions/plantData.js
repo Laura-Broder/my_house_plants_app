@@ -66,16 +66,6 @@ class PlantDatabase {
   };
 }
 
-// const initFullItem = {
-//   id: null,
-//   name: "Un-named",
-//   imgUrl: "https://www.flaticon.com/svg/static/icons/svg/628/628283.svg",
-//   family_common_name: "",
-//   duration: "",
-//   edible: "",
-//   flower_images: "",
-// };
-
 class FullItem {
   constructor(item) {
     this.id = item.id;
@@ -84,24 +74,7 @@ class FullItem {
     this.family_common_name = item.family_common_name || "no data";
     this.duration = item.duration ? item.duration.join() : "no data";
     this.edible = item.edible && item.edible.toString();
-    // this.flower_images =
-    //   item.images.flower
-    //     .map((img) => {
-    //       return img.image_url;
-    //     })
-    //     .toString() || "no data";
-    // this.leaf_images =
-    //   item.images.leaf
-    //     .map((img) => {
-    //       return img.image_url;
-    //     })
-    //     .toString() || "no data";
-    // this.fruit_images =
-    //   item.images.fruit
-    //     .map((img) => {
-    //       return img.image_url;
-    //     })
-    //     .toString() || "no data";
+
     this.flower_color = item.flower.color
       ? item.flower.color.join()
       : "no data";
