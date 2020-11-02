@@ -16,7 +16,7 @@ class DayData {
   }
 }
 
-class WeekData {
+export class WeekData {
   constructor(dataArray = []) {
     this.weatherArray = this.processData(dataArray);
     this.saveNewData();
@@ -62,8 +62,3 @@ class WeekData {
     return this.weatherArray;
   };
 }
-
-module.exports = {
-  DayData,
-  WeekData,
-};

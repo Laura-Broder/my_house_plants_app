@@ -13,7 +13,7 @@ const initItem = {
   trimmingLastTime: "2020-10-01",
   fullItemData: {},
 };
-class ListItem {
+export class ListItem {
   constructor(item = initItem, index) {
     this.id = index;
     this.name = item.name;
@@ -35,7 +35,7 @@ class ListItem {
   }
 }
 
-class ManageData {
+export class ManageData {
   constructor(dataArray = JSON.parse(localStorage.getItem("plantsList"))) {
     if (dataArray) {
       this.dataArray = dataArray;
@@ -106,8 +106,3 @@ class ManageData {
     return this.dataArray;
   };
 }
-
-module.exports = {
-  ListItem,
-  ManageData,
-};

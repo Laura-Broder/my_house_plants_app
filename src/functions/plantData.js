@@ -4,7 +4,7 @@ const initItem = {
   imgUrl: "",
   fullItemData: {},
 };
-class ListItem {
+export class ListItem {
   constructor(item = initItem) {
     this.id = item.id;
     this.name = item.name;
@@ -13,7 +13,7 @@ class ListItem {
   }
 }
 
-class PlantDatabase {
+export class PlantDatabase {
   constructor(dataArray) {
     if (dataArray) {
       this.plantDataArray = this.processData(dataArray);
@@ -66,7 +66,7 @@ class PlantDatabase {
   };
 }
 
-class FullItem {
+export class FullItem {
   constructor(item) {
     this.id = item.id;
     this.name = item.common_name || "un-known";
@@ -86,9 +86,3 @@ class FullItem {
     this.fullData = item || {};
   }
 }
-
-module.exports = {
-  ListItem,
-  PlantDatabase,
-  FullItem,
-};

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Spinner from "../spinner/Spinner.component";
 import GalleryItem from "./GalleryItem.component";
 import PlantGallery from "./PlantGallery.component";
-const UpdateData = require("../../functions/updateData").ManageData;
+import { ManageData as UpdateData } from "../../functions/updateData";
 
 const Home = () => {
   const [spinnerShow, setSpinnerShow] = useState(true);

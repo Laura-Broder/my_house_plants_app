@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import weatherApi from "../../apis/weatherApi";
 import "./weatherWidget.css";
-const WeekData = require("../../functions/weatherData").WeekData;
+import { WeekData } from "../../functions/weatherData";
 
 const WeatherWidget = () => {
   const [fullData, setFullData] = useState({});

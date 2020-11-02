@@ -6,8 +6,10 @@ import PlantsList from "./PlantsList.component";
 import Spinner from "../spinner/Spinner.component";
 import { useEffect } from "react";
 import "./manageList.css";
-const UpdateData = require("../../functions/updateData").ManageData;
-const ListItem = require("../../functions/updateData").ListItem;
+import {
+  ManageData as UpdateData,
+  ListItem,
+} from "../../functions/updateData.js";
 
 const ManageList = () => {
   const listItem = new ListItem();

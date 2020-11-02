@@ -6,9 +6,11 @@ import SearchResultsItem from "../searchDatabase/SearchResultsItem.component";
 import ExpendedItem from "../ExpendedItem.component";
 import Spinner from "../spinner/Spinner.component";
 import "./searchDatabase.css";
-const PlantDatabase = require("../../functions/plantData").PlantDatabase;
-const PlantFullItem = require("../../functions/plantData").FullItem;
-const UpdateData = require("../../functions/updateData").ManageData;
+import {
+  PlantDatabase,
+  FullItem as PlantFullItem,
+} from "../../functions/plantData";
+import { ManageData as UpdateData } from "../../functions/updateData";
 
 const SearchDatabase = () => {
   const userList = new UpdateData();
