@@ -35,13 +35,15 @@ const SearchDatabase = () => {
     searchDatabaseByTerm(searchTerm);
   }, [searchTerm]);
   // update the displayed search results every time the they change
-  useEffect(() => {
+  const updateSearchResultsDisplay = () => {
     if (databaseSearchResults) {
       managePlantDatabase.setNewData(databaseSearchResults.data);
       setSearchResults(managePlantDatabase.getData());
       setLastPage(Math.ceil(databaseSearchResults.meta.total / 20));
     }
-  }, [databaseSearchResults]);
+  };
+  useEffect(updateSearchResultsDisplay, [databaseSearchResults]);
+
   // create a full data object of plant
   useEffect(() => {
     if (itemSearchResult) {
@@ -113,13 +115,14 @@ const SearchDatabase = () => {
   // -----------------------------------
   // add new plant from database to users list
   // -----------------------------------
-  useEffect(() => {
+  const addNewPlantToList = () => {
     if (addToListItem && selectedItemFullData) {
       setSpinnerShow(true);
       addNew(addToListItem, selectedItemFullData);
       setSpinnerShow(false);
     }
-  }, [addToListItem, selectedItemFullData]);
+  };
+  useEffect(addNewPlantToList, [addToListItem, selectedItemFullData]);
 
   const addNew = (addToListItem, selectedItemFullData) => {
     const newItem = addToListItem;
